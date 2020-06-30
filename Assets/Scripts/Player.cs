@@ -24,13 +24,15 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
-    private bool _isShieldActive = false;
+    [SerializeField]
+    private int _shieldStrength = 0;
     [SerializeField]
     private GameObject _leftEngine, _rightEngine;
     [SerializeField]
     private int _score;
     [SerializeField]
     private GameObject _explosion;
+    private Color _shieldColor;
 
     private UIManager _uiManager;
     private PostProcessVolume _postProcessVolume;
@@ -165,11 +167,19 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if (_isShieldActive == true)
+        if (_shieldStrength > 0)
         {
-            _isShieldActive = false;
-            _playerShield.SetActive(false);
-            return;
+            _shieldStrength--;
+            ShieldColorizer();
+            if (_shieldStrength == 0)
+            {
+                _playerShield.SetActive(false);
+                return;
+            } else
+            {
+                return;
+            }
+            
         }
         else
         {
@@ -225,7 +235,32 @@ public class Player : MonoBehaviour
     public void ShieldBoostActive()
     {
         _playerShield.SetActive(true);
-        _isShieldActive = true;
+        if (_shieldStrength < 3) {
+            _shieldStrength++;
+            ShieldColorizer();
+        }
+    }
+
+    public void ShieldColorizer()
+    {
+        switch (_shieldStrength)
+        {
+            case 1:
+                ColorUtility.TryParseHtmlString("#FF1C00", out _shieldColor);
+                _playerShield.GetComponent<SpriteRenderer>().color = _shieldColor;
+                break;
+            case 2:
+                ColorUtility.TryParseHtmlString("#17B71C", out _shieldColor);
+                _playerShield.GetComponent<SpriteRenderer>().color = _shieldColor;
+                break;
+            case 3:
+                ColorUtility.TryParseHtmlString("#15C5C8", out _shieldColor);
+                _playerShield.GetComponent<SpriteRenderer>().color = _shieldColor;
+                break;
+            default:
+                Debug.Log("Default Value");
+                break;
+        }
     }
 
     //method to add 10 to score
