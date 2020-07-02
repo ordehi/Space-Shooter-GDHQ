@@ -1640,6 +1640,7 @@ MonoBehaviour:
   - {fileID: 4080404689656669147, guid: 656ffd4fd68cbbb4d9f3f843e6691f49, type: 3}
   - {fileID: 6318873733469571592, guid: 21924f92b1ae3c94d8e4f5ec04ce8901, type: 3}
   - {fileID: 853663640889076740, guid: 98ee7727c5e93e748aa7a7b644fc7559, type: 3}
+  - {fileID: 4389894043814589658, guid: dbee87fac1807014d865b58fd573ec17, type: 3}
   _enemyContainer: {fileID: 1780586458}
   _stopSpawning: 0
 --- !u!4 &1576761608
