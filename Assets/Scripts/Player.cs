@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _canFire = -1f;
     [SerializeField]
+    private int _ammoCount = 15;
+    [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
     private bool _isTripleShotActive = false;
@@ -150,19 +152,21 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+        //ammo is not reduced when player has tripleshot powerup
         _canFire = Time.time + _fireRate;
 
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _audioSource.Play();
         }
-        else
+        else if (_ammoCount > 0)
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
-        }
-
-        _audioSource.Play();
-        
+            _audioSource.Play();
+            _ammoCount--;
+            _uiManager.UpdateAmmo(_ammoCount);
+        }        
     }
 
     public void Damage()
