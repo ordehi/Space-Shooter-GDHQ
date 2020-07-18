@@ -1641,6 +1641,7 @@ MonoBehaviour:
   - {fileID: 6318873733469571592, guid: 21924f92b1ae3c94d8e4f5ec04ce8901, type: 3}
   - {fileID: 853663640889076740, guid: 98ee7727c5e93e748aa7a7b644fc7559, type: 3}
   - {fileID: 4389894043814589658, guid: dbee87fac1807014d865b58fd573ec17, type: 3}
+  - {fileID: 4110669982332115179, guid: a21857ac63cdae44d86c2bbc3e3334ad, type: 3}
   _enemyContainer: {fileID: 1780586458}
   _stopSpawning: 0
 --- !u!4 &1576761608

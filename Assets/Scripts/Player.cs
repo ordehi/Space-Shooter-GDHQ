@@ -273,6 +273,22 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_ammoCount);
     }
 
+    public void RecoverHealth()
+    {
+        if (_lives < 3)
+        {
+            _lives++;
+            _uiManager.UpdateLives(_lives);
+            if (_lives == 2)
+            {
+                _leftEngine.SetActive(false);
+            } else if (_lives == 3)
+            {
+                _rightEngine.SetActive(false);
+            }
+        }
+    }
+
     //method to add 10 to score
     //communicate with UI manager and update score
 
